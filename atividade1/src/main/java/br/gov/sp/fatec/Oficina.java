@@ -6,6 +6,7 @@ public class Oficina {
 	
 	private String nome;
 	private String cnpj;
+	
 	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	
 	
