@@ -32,6 +32,10 @@ public class Carro {
 	@ManyToOne
 	private Cliente cliente;	
 	
+	public Carro() {
+		
+	}
+	
 
 	public Carro(String marca, String modelo, String cor, String placa) {
 		super();

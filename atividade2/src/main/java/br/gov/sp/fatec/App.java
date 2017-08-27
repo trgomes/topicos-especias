@@ -42,7 +42,22 @@ public class App
 		carro2.setCliente(cliente2);			
 		
 		carroRepo.save(carro1);
-		carroRepo.save(carro2);			
+		carroRepo.save(carro2);		
+		
+		//Consultas cliente
+		System.out.println("Resultado da busca de cliente por nome: " + clienteRepo.findByNome("Thiago").getNome());
+		
+		for(Cliente cli: clienteRepo.buscaCliente("oa")) {
+			System.out.println("Cliente por segmento: " + cli.getNome());
+		}
+		
+		//Consulta carro
+		System.out.println("Resultado da busca de carro por nome: " + carroRepo.findByMarca("Chevrolet").getMarca());
+		
+		for(Carro car: carroRepo.buscaCarro("or")) {
+			System.out.println("Cliente por segmento: " + car.getModelo());
+		}
+		
 		
     }
 }
