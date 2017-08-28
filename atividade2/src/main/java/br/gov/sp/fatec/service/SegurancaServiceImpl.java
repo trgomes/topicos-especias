@@ -20,7 +20,7 @@ public class SegurancaServiceImpl implements SegurancaService {
 	@Transactional
 	public void transacao() {
 		// Cria usuario
-		Cliente cliente = new Cliente("Pedro", "777.777.777-77");
+		Cliente cliente = new Cliente("Pedro", "777.777.777-78");
 		//Salva cliente
 		clienteRepo.save(cliente);
 		

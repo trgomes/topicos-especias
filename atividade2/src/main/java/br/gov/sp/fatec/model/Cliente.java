@@ -28,12 +28,11 @@ public class Cliente {
 	private String cpf;
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-//	@JoinColumn(name = "cliente_cli_id")
 	private List<Carro> carros;
 	
 	public Cliente() {
 		
-	}	
+	}
 	
 	public Cliente(String nome, String cpf) {
 		super();
