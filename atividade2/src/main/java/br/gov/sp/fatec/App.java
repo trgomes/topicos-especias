@@ -9,6 +9,8 @@ import br.gov.sp.fatec.model.Carro;
 import br.gov.sp.fatec.model.Cliente;
 import br.gov.sp.fatec.repository.CarroRepository;
 import br.gov.sp.fatec.repository.ClienteRepository;
+import br.gov.sp.fatec.service.CarroServico;
+import br.gov.sp.fatec.service.ClienteServico;
 import br.gov.sp.fatec.service.SegurancaService;
 
 /**
@@ -28,22 +30,19 @@ public class App
 		
 		//Criar clientes
 		//Cliente cliente1 = new Cliente("Thiago", "999.999.999-99");
-		Cliente cliente2 = new Cliente();
-		cliente2.setNome("Thiago");
-		cliente2.setCpf("888.888.888-88");
+		Cliente cliente = new Cliente("Thiago", "888.888.888-88");
 		
-		clienteRepo.save(cliente2);
-		
+		ClienteServico clis = (ClienteServico)context.getBean("clienteServico");
+		clis.salvaCliente(cliente);
 		
 		//Criar carros
 		Carro carro1 = new Carro("Chevrolet", "Corsa", "Azul", "AAA-9999");
-		Carro carro2 = new Carro("Fiat", "Uno", "Branco", "BBB-9999");			
+		Carro carro2 = new Carro("Fiat", "Uno", "Branco", "BBB-9999");
 		
-		carro1.setCliente(cliente2);
-		carro2.setCliente(cliente2);			
+		CarroServico cars = (CarroServico)context.getBean("carroServico");
+		cars.salvaCarro(carro1, cliente);
+		cars.salvaCarro(carro2, cliente);
 		
-		carroRepo.save(carro1);
-		carroRepo.save(carro2);		
 		
 		//Consultas cliente
 		System.out.println("Resultado da busca de cliente por nome: " + clienteRepo.findByNome("Thiago").getNome());
@@ -58,6 +57,10 @@ public class App
 		for(Carro car: carroRepo.buscaCarro("or")) {
 			System.out.println("Cliente por segmento: " + car.getModelo());
 		}
+		
+		
+		System.out.println("Testando join ===> " + carroRepo.getByModelo("Uno").getCliente().getNome());
+		
 		
 		
 		//Transação

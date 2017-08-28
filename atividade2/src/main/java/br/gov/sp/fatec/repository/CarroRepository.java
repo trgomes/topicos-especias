@@ -15,4 +15,7 @@ public interface CarroRepository extends CrudRepository<Carro, Long>{
 
 	@Query("select c from Carro c where c.modelo like %?1%")
 	public List<Carro> buscaCarro(String modelo);
+	
+	@Query("Select c FROM Cliente a JOIN a.carros c where c.modelo like %?1%")
+	public Carro getByModelo(String modelo);
 }
