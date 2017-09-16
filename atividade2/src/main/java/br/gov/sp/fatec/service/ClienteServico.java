@@ -27,11 +27,11 @@ public class ClienteServico {
 	
 	public String clientePorSegmento(String segmento) {
 		
-		String nomes = "Cliente(s): ";
+		String nomes = "";
 		
 		for(Cliente cli: clienteRepo.buscaCliente(segmento)) {
 						
-			nomes += " " + cli.getNome();
+			nomes +=  cli.getNome();
 		}
 		
 		return nomes;
