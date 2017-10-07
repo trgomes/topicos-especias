@@ -4,10 +4,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-
 public class ClienteController {
 	
-	@RequestMapping(value = "/cliente")
+	@RequestMapping(value = "/")
 	public String hello()
 	{
 		return "O mapeamento Cliente está funcionando!";
