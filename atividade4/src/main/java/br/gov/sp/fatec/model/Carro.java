@@ -5,9 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.view.View;
+
+
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "carros")
 public class Carro {
@@ -15,21 +28,28 @@ public class Carro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "car_id")
+	@JsonView({View.Main.class, View.Alternative.class})
 	private Long id;
 	
 	@Column(name = "car_marca", length = 20, nullable = false)
+	@JsonView({View.Main.class, View.Alternative.class})
 	private String marca;
 	
 	@Column(name = "car_modelo", length = 20, nullable = false)
+	@JsonView({View.Main.class, View.Alternative.class})
 	private String modelo;
 	
 	@Column(name = "car_cor", length = 20, nullable = false)
+	@JsonView({View.Main.class, View.Alternative.class})
 	private String cor;
 	
 	@Column(name = "car_placa", length = 8, nullable = false)
+	@JsonView({View.Main.class, View.Alternative.class})
 	private String placa;
 	
 	@ManyToOne
+	@JsonView({View.Main.class, View.Alternative.class})
+    @XmlElement(name = "cliente")
 	private Cliente cliente;	
 	
 	public Carro() {
