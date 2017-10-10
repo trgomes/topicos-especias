@@ -1,5 +1,7 @@
 package br.gov.sp.fatec.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +17,17 @@ public class CarroServico {
 	private CarroRepository carroRepo;
 	
 	@Transactional
-	public void salvaCarro(Carro carro, Cliente cliente) {
-		carro.setCliente(cliente);
-		carroRepo.save(carro);		
+	public Carro salvaCarro(Carro carro) {		
+		return carroRepo.save(carro);		
 	}
 	
+	
+	@Transactional
+	public Carro carroPorId(Long id) {
+		return carroRepo.findOne(id);
+	}
+	
+	@Transactional
 	public String modeloPorMarca(String marca) {
 		
 		return carroRepo.findByMarca("Chevrolet").getModelo();	
@@ -42,9 +50,9 @@ public class CarroServico {
 		
 	}
 	
-	public String clientePorModelo(String modelo) {		
+	public List<Cliente> clientePorModelo(String modelo) {	
 		
-		return carroRepo.getByModelo(modelo).getCliente().getNome();
+		return carroRepo.getByModelo(modelo);
 		
 	}
 	

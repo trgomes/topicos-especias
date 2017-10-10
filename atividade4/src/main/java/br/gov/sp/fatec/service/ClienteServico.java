@@ -17,25 +17,39 @@ public class ClienteServico {
 	private ClienteRepository clienteRepo;
 	
 	@Transactional
-	public void salvaCliente(Cliente cliente) {
-		clienteRepo.save(cliente);
+	public Cliente salvaCliente(Cliente cliente) {
+		return clienteRepo.save(cliente);
 	}
+	
+	
+	@Transactional
+	public Cliente clientePorId(Long id) {
+		return clienteRepo.findOne(id);
+	}
+	
 	
 	@Transactional	
 	public Collection<Cliente> clientePorNome(String nome) {
 		
 		List<Cliente> retorno = new ArrayList<Cliente>();
 		
-//		Cliente cliente = new Cliente();			
-//		
-//		cliente.setNome(clienteRepo.findByNome(nome).getNome());
-//		cliente.setCpf(clienteRepo.findByNome(nome).getCpf());
-//		retorno.add(cliente);
-		
 		retorno.add(clienteRepo.findByNome(nome));
 		
 		return retorno;
 	}
+	
+	
+	@Transactional
+	public List<Cliente> getAllClientes(){
+		
+		List<Cliente> retorno = new ArrayList<Cliente>();
+		
+		for(Cliente cliente: clienteRepo.findAll()) {
+			retorno.add(cliente);
+		}
+		return retorno;		
+	}
+	
 	
 	@Transactional
 	public String clientePorSegmento(String segmento) {
